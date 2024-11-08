@@ -8,5 +8,6 @@ public class main {
         archivosCSV.LeerCSVSolicitantes("datos");
         Condiciones condiciones = new Condiciones(archivosCSV); // Pasar la instancia de ArchivosCSV
         condiciones.revision();
+        System.out.println("Hola git");
     }
 }
