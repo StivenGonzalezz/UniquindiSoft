@@ -6,8 +6,8 @@ public class Entes extends Persona {
     private boolean isEmbargado;
     private boolean isInhabilitado;
 
-    public Entes(String nombre, String apellidos, long documento, long telefono, String cuidadResidencia, boolean isEmbargado, boolean isInhabilitado) {
-        super(nombre, apellidos, documento, telefono, cuidadResidencia);
+    public Entes(String nombre, String apellidos, int edad, long documento, long telefono, String cuidadResidencia, boolean isDeclarador, boolean isEmbargado, boolean isInhabilitado) {
+        super(nombre, apellidos, edad, documento, telefono, cuidadResidencia, isDeclarador);
         this.isEmbargado = isEmbargado;
         this.isInhabilitado = isInhabilitado;
     }

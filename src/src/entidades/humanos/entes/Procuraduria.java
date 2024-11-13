@@ -2,8 +2,7 @@ package src.entidades.humanos.entes;
 
 public class Procuraduria extends Entes {
 
-    public Procuraduria(String nombre, String apellidos, long documento, long telefono, String cuidadResidencia, boolean isEmbargado, boolean isInhabilitado) {
-        super(nombre, apellidos, documento, telefono, cuidadResidencia, isEmbargado, isInhabilitado);
+    public Procuraduria(String nombre, String apellidos, int edad, long documento, long telefono, String cuidadResidencia, boolean isDeclarador, boolean isEmbargado, boolean isInhabilitado) {
+        super(nombre, apellidos, edad, documento, telefono, cuidadResidencia, isDeclarador, isEmbargado, isInhabilitado);
     }
-
 }

@@ -6,7 +6,10 @@ import src.entidades.humanos.entes.Fiscalia;
 import src.entidades.humanos.entes.Procuraduria;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ArchivosCSV {
 
@@ -22,24 +25,36 @@ public class ArchivosCSV {
         listaProcuraduria = new ArrayList<>();
     }
 
-    public void LeerCSVSolicitantes(){
+    public void LeerCSVSolicitantes() {
 
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\solicitudesEntrantes\\solicitantes.csv"))) {
             String linea;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  // Formato de la fecha en el CSV
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
 
-                // Crear un objeto Cotizantes con los datos leídos
-                Solicitantes solicitantes = new Solicitantes(
+                // Convertir la fecha de la cadena CSV a Date
+                Date fecha = null;
+                try {
+                    fecha = sdf.parse(datos[7]);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                // Crear un objeto Solicitantes con los datos leídos
+                Solicitantes solicitante = new Solicitantes(
                         datos[0],              // nombre
                         datos[1],              // apellidos
-                        Long.parseLong(datos[2]),  // documento
-                        Long.parseLong(datos[3]),  // telefono
-                        datos[4]              // cuidadResidencia
+                        Integer.parseInt(datos[2]),     // edad
+                        Long.parseLong(datos[3]),  // documento
+                        Long.parseLong(datos[4]),  // telefono
+                        datos[5],            // cuidadResidencia
+                        Boolean.parseBoolean(datos[6]),    // isDeclarador
+                        fecha                // fecha
                 );
 
-                // Añadir el objeto Cotizantes al ArrayList
-                listaSolicitantes.add(solicitantes);
+                // Añadir el objeto Solicitantes al ArrayList
+                listaSolicitantes.add(solicitante);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,11 +71,13 @@ public class ArchivosCSV {
                 Contraloria contraloria = new Contraloria(
                         datos[0],              // nombre
                         datos[1],              // apellidos
-                        Long.parseLong(datos[2]),  // documento
-                        Long.parseLong(datos[3]),  // telefono
-                        datos[4],              // cuidadResidencia
-                        Boolean.parseBoolean(datos[5]),  // isEmbargado
-                        Boolean.parseBoolean(datos[6])   // isInhabilitado
+                        Integer.parseInt(datos[2]),     //edad
+                        Long.parseLong(datos[3]),  // documento
+                        Long.parseLong(datos[4]),  // telefono
+                        datos[5],              // cuidadResidencia
+                        Boolean.parseBoolean(datos[6]),     //isDeclarador
+                        Boolean.parseBoolean(datos[7]),  // isEmbargado
+                        Boolean.parseBoolean(datos[8])   // isInhabilitado
                 );
                 listaContraloria.add(contraloria);
             }
@@ -79,11 +96,13 @@ public class ArchivosCSV {
                 Fiscalia fiscalia = new Fiscalia(
                         datos[0],              // nombre
                         datos[1],              // apellidos
-                        Long.parseLong(datos[2]),  // documento
-                        Long.parseLong(datos[3]),  // telefono
-                        datos[4],              // cuidadResidencia
-                        Boolean.parseBoolean(datos[5]),  // isEmbargado
-                        Boolean.parseBoolean(datos[6])   // isInhabilitado
+                        Integer.parseInt(datos[2]),     //edad
+                        Long.parseLong(datos[3]),  // documento
+                        Long.parseLong(datos[4]),  // telefono
+                        datos[5],              // cuidadResidencia
+                        Boolean.parseBoolean(datos[6]),     //isDeclarador
+                        Boolean.parseBoolean(datos[7]),  // isEmbargado
+                        Boolean.parseBoolean(datos[8])   // isInhabilitado
                 );
                 listaFiscalia.add(fiscalia);
             }
@@ -102,22 +121,17 @@ public class ArchivosCSV {
                 Procuraduria procuraduria = new Procuraduria(
                         datos[0],              // nombre
                         datos[1],              // apellidos
-                        Long.parseLong(datos[2]),  // documento
-                        Long.parseLong(datos[3]),  // telefono
-                        datos[4],              // cuidadResidencia
-                        Boolean.parseBoolean(datos[5]),  // isEmbargado
-                        Boolean.parseBoolean(datos[6])   // isInhabilitado8
+                        Integer.parseInt(datos[2]),     //edad
+                        Long.parseLong(datos[3]),  // documento
+                        Long.parseLong(datos[4]),  // telefono
+                        datos[5],              // cuidadResidencia
+                        Boolean.parseBoolean(datos[6]),     //isDeclarador
+                        Boolean.parseBoolean(datos[7]),  // isEmbargado
+                        Boolean.parseBoolean(datos[8])   // isInhabilitado
                 );
                 listaProcuraduria.add(procuraduria);
 
             }
-
-            System.out.println(listaProcuraduria.size());
-            for (Procuraduria p:listaProcuraduria){
-                System.out.println(p.getNombre());
-            }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -125,13 +139,15 @@ public class ArchivosCSV {
 
     public void embargadosEscribirCSVContraloria(int i) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\embargados.csv", true))) {
-            String linea = listaProcuraduria.get(i).getNombre() + "," +
-                    listaProcuraduria.get(i).getApellidos() + "," +
-                    listaProcuraduria.get(i).getDocumento() + "," +
-                    listaProcuraduria.get(i).getTelefono() + "," +
-                    listaProcuraduria.get(i).getCuidadResidencia() + "," +
-                    listaProcuraduria.get(i).isEmbargado() + "," +
-                    listaProcuraduria.get(i).isInhabilitado();
+            String linea = listaContraloria.get(i).getNombre() + "," +
+                    listaContraloria.get(i).getApellidos() + "," +
+                    listaContraloria.get(i).getEdad() + "," +
+                    listaContraloria.get(i).getDocumento() + "," +
+                    listaContraloria.get(i).getTelefono() + "," +
+                    listaContraloria.get(i).getCuidadResidencia() + "," +
+                    listaContraloria.get(i).isDeclarador() + "," +
+                    listaContraloria.get(i).isEmbargado() + "," +
+                    listaContraloria.get(i).isInhabilitado();
             bw.write(linea);
             bw.newLine();
         } catch (IOException e) {
@@ -143,9 +159,11 @@ public class ArchivosCSV {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\embargados.csv", true))) {
             String linea = listaFiscalia.get(i).getNombre() + "," +
                     listaFiscalia.get(i).getApellidos() + "," +
+                    listaFiscalia.get(i).getEdad() + "," +
                     listaFiscalia.get(i).getDocumento() + "," +
                     listaFiscalia.get(i).getTelefono() + "," +
                     listaFiscalia.get(i).getCuidadResidencia() + "," +
+                    listaFiscalia.get(i).getEdad() + "," +
                     listaFiscalia.get(i).isEmbargado() + "," +
                     listaFiscalia.get(i).isInhabilitado();
             bw.write(linea);
@@ -159,9 +177,11 @@ public class ArchivosCSV {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\embargados.csv", true))) {
             String linea = listaProcuraduria.get(i).getNombre() + "," +
                     listaProcuraduria.get(i).getApellidos() + "," +
+                    listaProcuraduria.get(i).getEdad() + "," +
                     listaProcuraduria.get(i).getDocumento() + "," +
                     listaProcuraduria.get(i).getTelefono() + "," +
                     listaProcuraduria.get(i).getCuidadResidencia() + "," +
+                    listaProcuraduria.get(i).isDeclarador() + "," +
                     listaProcuraduria.get(i).isEmbargado() + "," +
                     listaProcuraduria.get(i).isInhabilitado();
             bw.write(linea);
@@ -171,15 +191,19 @@ public class ArchivosCSV {
         }
     }
 
-    public void inhabilitadosEscribirCSVContraloria(int i) {
+    public void inhabilitadosEscribirCSVContraloria(int i,int j) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\inabilitados.csv", true))) {
             String linea = listaContraloria.get(i).getNombre() + "," +
                     listaContraloria.get(i).getApellidos() + "," +
+                    listaContraloria.get(i).getEdad() + "," +
                     listaContraloria.get(i).getDocumento() + "," +
                     listaContraloria.get(i).getTelefono() + "," +
                     listaContraloria.get(i).getCuidadResidencia() + "," +
+                    listaContraloria.get(i).isDeclarador() + "," +
                     listaContraloria.get(i).isEmbargado() + "," +
-                    listaContraloria.get(i).isInhabilitado();
+                    listaContraloria.get(i).isInhabilitado() + "," +
+                    listaSolicitantes.get(j).getFecha();
+
             bw.write(linea);
             bw.newLine();
         } catch (IOException e) {
@@ -191,9 +215,11 @@ public class ArchivosCSV {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\inabilitados.csv", true))) {
             String linea = listaFiscalia.get(i).getNombre() + "," +
                     listaFiscalia.get(i).getApellidos() + "," +
+                    listaFiscalia.get(i).getEdad() + "," +
                     listaFiscalia.get(i).getDocumento() + "," +
                     listaFiscalia.get(i).getTelefono() + "," +
                     listaFiscalia.get(i).getCuidadResidencia() + "," +
+                    listaFiscalia.get(i).getEdad() + "," +
                     listaFiscalia.get(i).isEmbargado() + "," +
                     listaFiscalia.get(i).isInhabilitado();
             bw.write(linea);
@@ -207,9 +233,11 @@ public class ArchivosCSV {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\inhabilitados.csv", true))) {
             String linea = listaProcuraduria.get(i).getNombre() + "," +
                     listaProcuraduria.get(i).getApellidos() + "," +
+                    listaProcuraduria.get(i).getEdad() + "," +
                     listaProcuraduria.get(i).getDocumento() + "," +
                     listaProcuraduria.get(i).getTelefono() + "," +
                     listaProcuraduria.get(i).getCuidadResidencia() + "," +
+                    listaProcuraduria.get(i).isDeclarador() + "," +
                     listaProcuraduria.get(i).isEmbargado() + "," +
                     listaProcuraduria.get(i).isInhabilitado();
             bw.write(linea);

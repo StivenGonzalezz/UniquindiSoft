@@ -1,6 +1,8 @@
 package generadores;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -10,17 +12,25 @@ public class GeneradorPersonas {
         String[] apellidos = {"naranjo", "perez", "garcia", "lopez", "martinez", "gonzalez", "hernandez", "sanchez", "rodriguez", "ramirez", "torres", "flores", "garcia", "díaz", "vargas", "jiménez", "ruiz", "cameron", "castro", "alvarez", "moreno", "almeida", "soto", "gomez", "reyes", "mendoza", "cruz", "guerrero", "rojas", "ramos", "cano", "chapman", "davis", "lopez", "herrera", "jimenez", "mora", "rodriguez", "perez", "torres", "santana", "ruiz", "martinez", "vega", "müller", "sierra", "yanez", "bustos", "delgado", "marin", "sarmiento", "gonzalez", "oliva", "carvajal", "fernandez", "pimentel", "vazquez", "andrade", "chaparro", "serrano", "cabrera", "garcia", "vazquez", "hernandez", "serna", "montero", "díaz", "esquivel", "cardenas", "barrientos", "carrillo", "pérez", "gonzalez", "romero", "pantoja", "alcaraz", "paredes", "reyes", "bermudez", "morales", "ruiz", "cifuentes", "lópez", "andrade", "sanchez", "benitez", "acosta", "salazar", "munoz", "guzmán", "gonzález", "castillo", "reyes", "martinez", "cortez", "gonzalez", "suarez", "munoz", "cardozo", "mora", "salcedo", "guzman", "rojas", "flores", "fuentes", "delgado", "olivera", "castro", "santa", "hernandez", "guerrero", "navarro", "bautista", "solis", "delgado", "ruiz", "hidalgo", "medina", "melgar", "rivas", "zarate", "pazos", "calderon", "bautista", "velasco", "robles", "pardo", "jimenez", "mora", "vivas", "torres", "quintero", "rodriguez", "ibarra", "gomez", "aguilar", "vásquez", "dominguez", "benavides", "lira", "santa cruz", "franco", "rivera", "garcia", "pajares", "martinez", "aúz", "alcaraz", "arias", "pinto", "lópez", "hinojosa", "moreno", "trujillo", "salcedo", "gimenez", "gonzalez", "fernandez", "jasso", "gomez", "reyes", "salas", "hinojosa", "caro", "segovia", "abreu", "suarez", "jerez", "pardo", "ferrer", "fierro", "carrillo", "delgado", "quiroz", "hernandez", "fuentes", "vazquez", "gomez", "martinez", "valenzuela", "rodriguez", "sánchez", "prado", "moya", "toro", "pozo", "roa", "paez", "sotelo", "martinez", "cardona", "pérez", "pichardo", "santana", "gonzalez", "sierra", "silva", "aguilar", "romero", "andrade", "salazar", "bernal", "rojas", "arce", "lucero", "sánchez", "gonzález", "zuniga", "piedra", "melo", "calderon", "figueroa", "medina", "vasquez", "sanchez", "ochoa", "vera", "portillo", "campbell", "lujan", "ruiz", "rivera", "abreu", "alvarado", "arias", "robles", "lucero", "carrillo", "velázquez", "fuentes", "quiroz", "fuentes", "lópez", "rodríguez", "martínez", "vargas", "garcia", "torres", "silva", "avila", "serrano", "avila", "martinez", "pimentel", "márquez", "merino", "diaz", "cano", "rodríguez", "ramirez", "aranda", "polo", "moreno", "jardines", "robles", "ramirez", "gonzález", "poveda", "delgado", "sainz", "bustamante", "hernández", "semanario", "maqueda", "medrano", "quintana", "yanez", "cortes", "ríos", "pedrosa", "castillo", "romero", "carrasco", "delgado", "velasco", "mora", "coronado"};
         String[] ciudades = {"Apartadó", "Arauca", "Arauquita", "Armenia", "Barranquilla", "Bogotá", "Bucaramanga", "Cali", "Cartagena", "Chía", "Cúcuta", "Florencia", "Girardot", "Ibagué", "Inírida", "Leticia", "Manizales", "Medellín", "Montería", "Neiva", "Pasto", "Pereira", "Pitalito", "Popayán", "Quibdó", "Riohacha", "Santa Marta", "Santa Rosa de Cabal", "Sincelejo", "Soacha", "Tunja", "Valledupar", "Villavicencio", "Yopal"};
 
+
         List<String> listaPersonas = new ArrayList<>();
         Random random = new Random();
 
         for (int i = 0; i < 10000; i++) {
+            Date fechaActual = new Date();  // Fecha actual generada en cada iteración
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String fechaFormateada = sdf.format(fechaActual);
+
             String nombre = nombres[random.nextInt(nombres.length)];
             String apellido = apellidos[random.nextInt(apellidos.length)];
+            String edad = String.valueOf(40 + random.nextInt(41));
             String cedula = String.valueOf(1000000000 + random.nextInt(900000000));
             String telefono = String.valueOf(3000000000L + random.nextInt(1000000000));
             String ciudad = ciudades[random.nextInt(ciudades.length)];
+            boolean bool = random.nextBoolean();
 
-            listaPersonas.add(nombre + "," + apellido + "," + cedula + "," + telefono + "," + ciudad);
+            // Agregar la fecha actual al registro
+            listaPersonas.add(nombre + "," + apellido + "," + edad + "," + cedula + "," + telefono + "," + ciudad + "," + bool + "," + fechaFormateada);
         }
 
         // Imprimir o guardar la lista generada

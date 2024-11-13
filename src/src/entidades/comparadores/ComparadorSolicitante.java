@@ -36,7 +36,7 @@ public class ComparadorSolicitante {
             for (Solicitantes solicitante : listaSolicitantes) {
                 if (contraloria.getDocumento() == solicitante.getDocumento()) {
                     if (contraloria.isInhabilitado()) {
-                        archivosCSV.inhabilitadosEscribirCSVContraloria(listaContraloria.indexOf(contraloria));
+                        archivosCSV.inhabilitadosEscribirCSVContraloria(listaContraloria.indexOf(contraloria),listaSolicitantes.indexOf(solicitante));
                     }
                     // Puedes agregar otras condiciones aquí si es necesario
                 }

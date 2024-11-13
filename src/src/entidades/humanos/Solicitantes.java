@@ -1,8 +1,20 @@
 package src.entidades.humanos;
 
+import java.util.Date;
+
 public class Solicitantes extends Persona {
 
-    public Solicitantes(String nombre, String apellidos, long documento, long telefono, String cuidadResidencia) {
-        super(nombre, apellidos, documento, telefono, cuidadResidencia);
+    private Date fecha;
+    public Solicitantes(String nombre, String apellidos, int edad, long documento, long telefono, String cuidadResidencia, boolean isDeclarador ,Date fecha) {
+        super(nombre, apellidos, edad, documento, telefono, cuidadResidencia, isDeclarador);
+        this.fecha=fecha;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }

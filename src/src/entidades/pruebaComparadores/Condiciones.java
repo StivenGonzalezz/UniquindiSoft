@@ -33,7 +33,7 @@ public class Condiciones {
                     if (listaContraloria.get(i).isEmbargado()) {
                         archivosCSV.embargadosEscribirCSVContraloria(i);
                     } else if (listaContraloria.get(i).isInhabilitado()) {
-                        archivosCSV.inhabilitadosEscribirCSVContraloria(i);
+                        archivosCSV.inhabilitadosEscribirCSVContraloria(i,j);
                     } else {
 
                         //if (listaSolicitantes.get(j)){
