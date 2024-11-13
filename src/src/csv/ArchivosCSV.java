@@ -137,111 +137,17 @@ public class ArchivosCSV {
         }
     }
 
-    public void embargadosEscribirCSVContraloria(int i) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\embargados.csv", true))) {
-            String linea = listaContraloria.get(i).getNombre() + "," +
-                    listaContraloria.get(i).getApellidos() + "," +
-                    listaContraloria.get(i).getEdad() + "," +
-                    listaContraloria.get(i).getDocumento() + "," +
-                    listaContraloria.get(i).getTelefono() + "," +
-                    listaContraloria.get(i).getCuidadResidencia() + "," +
-                    listaContraloria.get(i).isDeclarador() + "," +
-                    listaContraloria.get(i).isEmbargado() + "," +
-                    listaContraloria.get(i).isInhabilitado();
-            bw.write(linea);
-            bw.newLine();
+    public void embargadosEscribirCSV(String inhabilitados) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\embargados.csv", false))) {
+            bw.write(inhabilitados);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void embargadosEscribirCSVFiscalia(int i) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\embargados.csv", true))) {
-            String linea = listaFiscalia.get(i).getNombre() + "," +
-                    listaFiscalia.get(i).getApellidos() + "," +
-                    listaFiscalia.get(i).getEdad() + "," +
-                    listaFiscalia.get(i).getDocumento() + "," +
-                    listaFiscalia.get(i).getTelefono() + "," +
-                    listaFiscalia.get(i).getCuidadResidencia() + "," +
-                    listaFiscalia.get(i).getEdad() + "," +
-                    listaFiscalia.get(i).isEmbargado() + "," +
-                    listaFiscalia.get(i).isInhabilitado();
-            bw.write(linea);
-            bw.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void embargadosEscribirCSVProcuraduria(int i) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\embargados.csv", true))) {
-            String linea = listaProcuraduria.get(i).getNombre() + "," +
-                    listaProcuraduria.get(i).getApellidos() + "," +
-                    listaProcuraduria.get(i).getEdad() + "," +
-                    listaProcuraduria.get(i).getDocumento() + "," +
-                    listaProcuraduria.get(i).getTelefono() + "," +
-                    listaProcuraduria.get(i).getCuidadResidencia() + "," +
-                    listaProcuraduria.get(i).isDeclarador() + "," +
-                    listaProcuraduria.get(i).isEmbargado() + "," +
-                    listaProcuraduria.get(i).isInhabilitado();
-            bw.write(linea);
-            bw.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void inhabilitadosEscribirCSVContraloria(int i,int j) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\inabilitados.csv", true))) {
-            String linea = listaContraloria.get(i).getNombre() + "," +
-                    listaContraloria.get(i).getApellidos() + "," +
-                    listaContraloria.get(i).getEdad() + "," +
-                    listaContraloria.get(i).getDocumento() + "," +
-                    listaContraloria.get(i).getTelefono() + "," +
-                    listaContraloria.get(i).getCuidadResidencia() + "," +
-                    listaContraloria.get(i).isDeclarador() + "," +
-                    listaContraloria.get(i).isEmbargado() + "," +
-                    listaContraloria.get(i).isInhabilitado() + "," +
-                    listaSolicitantes.get(j).getFecha();
-
-            bw.write(linea);
-            bw.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void inhabilitadosEscribirCSVFiscalia(int i) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\inabilitados.csv", true))) {
-            String linea = listaFiscalia.get(i).getNombre() + "," +
-                    listaFiscalia.get(i).getApellidos() + "," +
-                    listaFiscalia.get(i).getEdad() + "," +
-                    listaFiscalia.get(i).getDocumento() + "," +
-                    listaFiscalia.get(i).getTelefono() + "," +
-                    listaFiscalia.get(i).getCuidadResidencia() + "," +
-                    listaFiscalia.get(i).getEdad() + "," +
-                    listaFiscalia.get(i).isEmbargado() + "," +
-                    listaFiscalia.get(i).isInhabilitado();
-            bw.write(linea);
-            bw.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void inhabilitadosEscribirCSVProcuraduria(int i) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\inhabilitados.csv", true))) {
-            String linea = listaProcuraduria.get(i).getNombre() + "," +
-                    listaProcuraduria.get(i).getApellidos() + "," +
-                    listaProcuraduria.get(i).getEdad() + "," +
-                    listaProcuraduria.get(i).getDocumento() + "," +
-                    listaProcuraduria.get(i).getTelefono() + "," +
-                    listaProcuraduria.get(i).getCuidadResidencia() + "," +
-                    listaProcuraduria.get(i).isDeclarador() + "," +
-                    listaProcuraduria.get(i).isEmbargado() + "," +
-                    listaProcuraduria.get(i).isInhabilitado();
-            bw.write(linea);
-            bw.newLine();
+    public void inhabilitadosEscribirCSV(String inhabilitados) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\inhabilitados.csv", false))) {
+            bw.write(inhabilitados);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -256,5 +162,4 @@ public class ArchivosCSV {
     }public ArrayList<Procuraduria> getListaProcuraduria() {
         return listaProcuraduria;
     }
-
 }

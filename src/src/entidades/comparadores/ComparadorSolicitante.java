@@ -32,15 +32,110 @@ public class ComparadorSolicitante {
         ArrayList<Solicitantes> listaSolicitantes = archivosCSV.getListaSolicitantes();
         ArrayList<Contraloria> listaContraloria = archivosCSV.getListaContraloria();
 
+        // Creamos un StringBuilder para almacenar todas las líneas de inhabilitados
+        StringBuilder inhabilitados = new StringBuilder();
+        StringBuilder embargados = new StringBuilder();
+
+        // Recorremos los registros
         for (Contraloria contraloria : listaContraloria) {
             for (Solicitantes solicitante : listaSolicitantes) {
                 if (contraloria.getDocumento() == solicitante.getDocumento()) {
                     if (contraloria.isInhabilitado()) {
-                        archivosCSV.inhabilitadosEscribirCSVContraloria(listaContraloria.indexOf(contraloria),listaSolicitantes.indexOf(solicitante));
+                        // Agregamos el registro al StringBuilder
+                        inhabilitados.append(contraloria.getNombre()).append(",")
+                                .append(contraloria.getApellidos()).append(",")
+                                .append(contraloria.getEdad()).append(",")
+                                .append(contraloria.getDocumento()).append(",")
+                                .append(contraloria.getTelefono()).append(",")
+                                .append(contraloria.getCuidadResidencia()).append(",")
+                                .append(contraloria.isDeclarador()).append(",")
+                                .append(contraloria.isEmbargado()).append(",")
+                                .append(contraloria.isInhabilitado()).append(",")
+                                .append(solicitante.getFecha()).append("\n");
+
+                    } else if (contraloria.isEmbargado()) {
+                        embargados.append(contraloria.getNombre()).append(",")
+                                .append(contraloria.getApellidos()).append(",")
+                                .append(contraloria.getEdad()).append(",")
+                                .append(contraloria.getDocumento()).append(",")
+                                .append(contraloria.getTelefono()).append(",")
+                                .append(contraloria.getCuidadResidencia()).append(",")
+                                .append(contraloria.isDeclarador()).append(",")
+                                .append(contraloria.isEmbargado()).append(",")
+                                .append(contraloria.isInhabilitado()).append("\n");
+
                     }
-                    // Puedes agregar otras condiciones aquí si es necesario
                 }
             }
+        }
+
+        for (Procuraduria procuraduria : listaProcuraduria) {
+            for (Solicitantes solicitante : listaSolicitantes) {
+                if (procuraduria.getDocumento() == solicitante.getDocumento()) {
+                    if (procuraduria.isInhabilitado()) {
+                        // Agregamos el registro al StringBuilder
+                        inhabilitados.append(procuraduria.getNombre()).append(",")
+                                .append(procuraduria.getApellidos()).append(",")
+                                .append(procuraduria.getEdad()).append(",")
+                                .append(procuraduria.getDocumento()).append(",")
+                                .append(procuraduria.getTelefono()).append(",")
+                                .append(procuraduria.getCuidadResidencia()).append(",")
+                                .append(procuraduria.isDeclarador()).append(",")
+                                .append(procuraduria.isEmbargado()).append(",")
+                                .append(procuraduria.isInhabilitado()).append(",")
+                                .append(solicitante.getFecha()).append("\n");
+                    } else if (procuraduria.isEmbargado()) {
+                        embargados.append(procuraduria.getNombre()).append(",")
+                                .append(procuraduria.getApellidos()).append(",")
+                                .append(procuraduria.getEdad()).append(",")
+                                .append(procuraduria.getDocumento()).append(",")
+                                .append(procuraduria.getTelefono()).append(",")
+                                .append(procuraduria.getCuidadResidencia()).append(",")
+                                .append(procuraduria.isDeclarador()).append(",")
+                                .append(procuraduria.isEmbargado()).append(",")
+                                .append(procuraduria.isInhabilitado()).append("\n");
+
+                    }
+                }
+            }
+        }
+
+        for (Fiscalia fiscalia : listaFiscalia) {
+            for (Solicitantes solicitante : listaSolicitantes) {
+                if (fiscalia.getDocumento() == solicitante.getDocumento()) {
+                    if (fiscalia.isInhabilitado()) {
+                        // Agregamos el registro al StringBuilder
+                        inhabilitados.append(fiscalia.getNombre()).append(",")
+                                .append(fiscalia.getApellidos()).append(",")
+                                .append(fiscalia.getEdad()).append(",")
+                                .append(fiscalia.getDocumento()).append(",")
+                                .append(fiscalia.getTelefono()).append(",")
+                                .append(fiscalia.getCuidadResidencia()).append(",")
+                                .append(fiscalia.isDeclarador()).append(",")
+                                .append(fiscalia.isEmbargado()).append(",")
+                                .append(fiscalia.isInhabilitado()).append(",")
+                                .append(solicitante.getFecha()).append("\n");
+                    } else if (fiscalia.isEmbargado()) {
+                        embargados.append(fiscalia.getNombre()).append(",")
+                                .append(fiscalia.getApellidos()).append(",")
+                                .append(fiscalia.getEdad()).append(",")
+                                .append(fiscalia.getDocumento()).append(",")
+                                .append(fiscalia.getTelefono()).append(",")
+                                .append(fiscalia.getCuidadResidencia()).append(",")
+                                .append(fiscalia.isDeclarador()).append(",")
+                                .append(fiscalia.isEmbargado()).append(",")
+                                .append(fiscalia.isInhabilitado()).append("\n");
+
+                    }
+                }
+            }
+        }
+
+        // Ahora escribimos todo de una vez en el archivo
+        if (inhabilitados.length() > 0) {
+            archivosCSV.inhabilitadosEscribirCSV(inhabilitados.toString());
+        }if (embargados.length() > 0) {
+            archivosCSV.embargadosEscribirCSV(embargados.toString());
         }
     }
 }

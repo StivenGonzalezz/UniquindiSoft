@@ -2,7 +2,7 @@ package generadores;
 
 import java.io.FileWriter;
 import java.io.IOException;
-public class LimpiadorSolicitantes {
+public class LimpiadorCSV {
     public static void main(String[] args) {
         String rutaArchivo = "C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\solicitudesEntrantes\\solicitantes.csv";
         try (FileWriter writer = new FileWriter(rutaArchivo, false)) {
