@@ -1,7 +1,6 @@
-package src.entidades.humanos.entes;
+package src.entidades.humanos;
 
-public class Contraloria {
-
+public class PreAprobado{
     private String nombre;
     private String apellidos;
     private int edad;
@@ -12,7 +11,7 @@ public class Contraloria {
     private boolean isEmbargado;
     private boolean isInhabilitado;
 
-    public Contraloria(String nombre, String apellidos, int edad, long documento, long telefono,String cuidadResidencia, boolean isDeclarador, boolean isEmbargado, boolean isInhabilitado) {
+    public PreAprobado(String nombre, String apellidos, int edad, long documento, long telefono,String cuidadResidencia, boolean isDeclarador, boolean isEmbargado, boolean isInhabilitado) {
         this.apellidos = apellidos;
         this.cuidadResidencia = cuidadResidencia;
         this.documento = documento;
@@ -46,6 +45,14 @@ public class Contraloria {
 
     public void setDocumento(long documento) {
         this.documento = documento;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     public boolean isDeclarador() {
@@ -86,13 +93,5 @@ public class Contraloria {
 
     public void setTelefono(long telefono) {
         this.telefono = telefono;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 }

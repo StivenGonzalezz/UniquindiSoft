@@ -3,48 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\UniquindiSoft\archivosCSV\contraloria.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\UniquindiSoft\archivosCSV\datos.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\UniquindiSoft\archivosCSV\embargados.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\UniquindiSoft\archivosCSV\fiscalia.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\UniquindiSoft\archivosCSV\inhabilitados.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\UniquindiSoft\archivosCSV\procuraduria.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\archivosCSV\contraloria.csv">
           <value>
             <Attribute>
@@ -66,14 +24,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\archivosCSV\inabilitados.csv">
+        <entry key="\archivosCSV\inhabilitados.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\archivosCSV\inhabilitados.csv">
+        <entry key="\archivosCSV\preaprobados.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -87,35 +45,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\archivosCSV\solicitantes.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\archivosCSV\solicitudesEntrantes\datos.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\archivosCSV\solicitudesEntrantes\solicitantes.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\contraloria.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\embargados.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

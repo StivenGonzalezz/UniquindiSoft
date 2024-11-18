@@ -1,11 +1,10 @@
 package src.csv;
 
 import src.entidades.humanos.Solicitantes;
-import src.entidades.humanos.entes.Aprobado;
+import src.entidades.humanos.PreAprobado;
 import src.entidades.humanos.entes.Contraloria;
 import src.entidades.humanos.entes.Fiscalia;
 import src.entidades.humanos.entes.Procuraduria;
-import src.ordenamiento.Ordenamiento;
 
 import java.io.*;
 import java.text.ParseException;
@@ -19,19 +18,21 @@ public class ArchivosCSV {
     private ArrayList<Contraloria> listaContraloria;
     private ArrayList<Fiscalia> listaFiscalia;
     private ArrayList<Procuraduria> listaProcuraduria;
-    private ArrayList<Aprobado> listaPreaprobados;
+    private ArrayList<PreAprobado> listaPreAprobado;
+
+
 
     public ArchivosCSV(){
         listaSolicitantes = new ArrayList<>();
         listaContraloria = new ArrayList<>();
         listaFiscalia = new ArrayList<>();
         listaProcuraduria = new ArrayList<>();
-        listaPreaprobados = new ArrayList<>();
+        listaPreAprobado = new ArrayList<>();
     }
 
-    public void LeerCSVSolicitantes() {
+    public void leerCSVSolicitantes() {
 
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\solicitudesEntrantes\\solicitantes.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\proyecto\\UniquindiSoft\\archivosCSV\\solicitudesEntrantes\\solicitantes.csv"))) {
             String linea;
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  // Formato de la fecha en el CSV
             while ((linea = br.readLine()) != null) {
@@ -65,8 +66,8 @@ public class ArchivosCSV {
         }
     }
 
-    public void LeerCSVContraloria() {
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\contraloria.csv"))) {
+    public void leerCSVContraloria() {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\proyecto\\UniquindiSoft\\archivosCSV\\contraloria.csv"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
@@ -84,21 +85,19 @@ public class ArchivosCSV {
                         Boolean.parseBoolean(datos[8])   // isInhabilitado
                 );
                 listaContraloria.add(contraloria);
-                System.out.println("Nombre: "+datos[0]+ " Decalrador:"+datos[6]);
-                System.out.println("Nombre: "+contraloria.getNombre()+ " Decalrador: "+contraloria.isDeclarador());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void LeerCSVFiscalia() {
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\fiscalia.csv"))) {
+    public void leerCSVFiscalia() {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\proyecto\\UniquindiSoft\\archivosCSV\\fiscalia.csv"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
 
-                //Crear la lista de Fiscalia
+                //Crear la lista de Contraloria
                 Fiscalia fiscalia = new Fiscalia(
                         datos[0],              // nombre
                         datos[1],              // apellidos
@@ -117,13 +116,13 @@ public class ArchivosCSV {
         }
     }
 
-    public void LeerCSVProcuraduria() {
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\procuraduria.csv"))) {
+    public void leerCSVProcuraduria() {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\proyecto\\UniquindiSoft\\archivosCSV\\procuraduria.csv"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
 
-                //Crear la lista de Procuraduria
+                //Crear la lista de Contraloria
                 Procuraduria procuraduria = new Procuraduria(
                         datos[0],              // nombre
                         datos[1],              // apellidos
@@ -136,21 +135,20 @@ public class ArchivosCSV {
                         Boolean.parseBoolean(datos[8])   // isInhabilitado
                 );
                 listaProcuraduria.add(procuraduria);
-
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void LeerCSVPreaprobados() {
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\preaprobados.csv"))) {
+    public void leerCSVPreAprobados() {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\UQ\\estructuraDatos\\proyecto\\UniquindiSoft\\archivosCSV\\preaprobados.csv"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
 
-                //Crear la lista de Procuraduria
-                Aprobado preaprobado = new Aprobado(
+                //Crear la lista de Contraloria
+                PreAprobado preaprobado = new PreAprobado(
                         datos[0],              // nombre
                         datos[1],              // apellidos
                         Integer.parseInt(datos[2]),     //edad
@@ -161,32 +159,32 @@ public class ArchivosCSV {
                         Boolean.parseBoolean(datos[7]),  // isEmbargado
                         Boolean.parseBoolean(datos[8])   // isInhabilitado
                 );
-                listaPreaprobados.add(preaprobado);
+                listaPreAprobado.add(preaprobado);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void embargadosEscribirCSV(String inhabilitados) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\embargados.csv", false))) {
-            bw.write(inhabilitados);
+    public void embargadosEscribirCSV(String embargados) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\proyecto\\UniquindiSoft\\archivosCSV\\embargados.csv", false))) {
+            bw.write(embargados);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void inhabilitadosEscribirCSV(String inhabilitados) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\inhabilitados.csv", false))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\proyecto\\UniquindiSoft\\archivosCSV\\inhabilitados.csv", false))) {
             bw.write(inhabilitados);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void preaprobadosEscribirCSV(String preaprobados) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\UniquindiSoft\\archivosCSV\\preaprobados.csv", false))) {
-            bw.write(preaprobados);
+    public void preAprobadosEscribirCSV(String preAprobados) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\proyecto\\UniquindiSoft\\archivosCSV\\preAprobados.csv", false))) {
+            bw.write(preAprobados);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -200,9 +198,7 @@ public class ArchivosCSV {
         return listaFiscalia;
     }public ArrayList<Procuraduria> getListaProcuraduria() {
         return listaProcuraduria;
-    }public ArrayList<Aprobado> getListaPreaprobados() {
-        return listaPreaprobados;
+    }public ArrayList<PreAprobado> getListaPreAprobado() {
+        return listaPreAprobado;
     }
-
-
 }

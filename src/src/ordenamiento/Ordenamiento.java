@@ -1,7 +1,7 @@
 package src.ordenamiento;
 
 import src.csv.ArchivosCSV;
-import src.entidades.humanos.entes.Aprobado;
+import src.entidades.humanos.PreAprobado;
 import src.entidades.humanos.entes.Contraloria;
 import src.entidades.humanos.entes.Fiscalia;
 import src.entidades.humanos.entes.Procuraduria;
@@ -16,18 +16,18 @@ public class Ordenamiento {
 
     public void ordenamiento() {
         ArchivosCSV archivosCSV = new ArchivosCSV();
-        archivosCSV.LeerCSVPreaprobados();
-        ArrayList<Aprobado> listaPreaprobados = archivosCSV.getListaPreaprobados();
+        archivosCSV.leerCSVPreAprobados();
+        ArrayList<PreAprobado> listaPreaprobados = archivosCSV.getListaPreAprobado();
 
         ordenarPrioridadAprobados(listaPreaprobados);
         System.out.println("----------------------PERSONAS APROBADAS ORDENADAS-----------------------------------------");
-        for (Aprobado aprobado : listaPreaprobados){
+        for (PreAprobado aprobado : listaPreaprobados){
             System.out.println("Nombre: "+aprobado.getNombre() + "  Edad: "+ aprobado.getEdad()+ "  Es declarante " +aprobado.isDeclarador());
         }
     }
 
     //Ordenar personas
-    public void ordenarPrioridadAprobados(ArrayList<Aprobado> lista){
+    public void ordenarPrioridadAprobados(ArrayList<PreAprobado> lista){
         lista.sort((f1, f2) -> {
             // Prioridad 1: Personas menores de 35 años
             int result = Boolean.compare(f2.getEdad() < 35, f1.getEdad() < 35);
