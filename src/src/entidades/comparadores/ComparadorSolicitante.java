@@ -1,6 +1,7 @@
 package src.entidades.comparadores;
 
 import src.csv.ArchivosCSV;
+import src.entidades.humanos.Inhabilitado;
 import src.entidades.humanos.PreAprobado;
 import src.entidades.humanos.Solicitantes;
 import src.entidades.humanos.entes.Contraloria;
@@ -12,9 +13,7 @@ public class ComparadorSolicitante {
 
     ArchivosCSV archivosCSV = new ArchivosCSV();
 
-
     public void revision() {
-
 
         archivosCSV.leerCSVSolicitantes();
         archivosCSV.leerCSVContraloria();
@@ -39,6 +38,16 @@ public class ComparadorSolicitante {
                 if (contraloria.getDocumento() == solicitante.getDocumento()) {
                     if (contraloria.isEmbargado() && !contraloria.isInhabilitado()) {
                         embargados.append(contraloria.getNombre()).append(",")
+                                .append(contraloria.getApellidos()).append(",")
+                                .append(contraloria.getEdad()).append(",")
+                                .append(contraloria.getDocumento()).append(",")
+                                .append(contraloria.getTelefono()).append(",")
+                                .append(contraloria.getCuidadResidencia()).append(",")
+                                .append(contraloria.isDeclarador()).append(",")
+                                .append(contraloria.isEmbargado()).append(",")
+                                .append(contraloria.isInhabilitado()).append("\n");
+
+                        preAprobados.append(contraloria.getNombre()).append(",")
                                 .append(contraloria.getApellidos()).append(",")
                                 .append(contraloria.getEdad()).append(",")
                                 .append(contraloria.getDocumento()).append(",")
@@ -102,6 +111,16 @@ public class ComparadorSolicitante {
                                 .append(fiscalia.isEmbargado()).append(",")
                                 .append(fiscalia.isInhabilitado()).append("\n");
 
+                        preAprobados.append(fiscalia.getNombre()).append(",")
+                                .append(fiscalia.getApellidos()).append(",")
+                                .append(fiscalia.getEdad()).append(",")
+                                .append(fiscalia.getDocumento()).append(",")
+                                .append(fiscalia.getTelefono()).append(",")
+                                .append(fiscalia.getCuidadResidencia()).append(",")
+                                .append(fiscalia.isDeclarador()).append(",")
+                                .append(fiscalia.isEmbargado()).append(",")
+                                .append(fiscalia.isInhabilitado()).append("\n");
+
                     } else if (fiscalia.isInhabilitado() && !fiscalia.isEmbargado()) {
                         inhabilitados.append(fiscalia.getNombre()).append(",")
                                 .append(fiscalia.getApellidos()).append(",")
@@ -156,6 +175,16 @@ public class ComparadorSolicitante {
                                 .append(procuraduria.isEmbargado()).append(",")
                                 .append(procuraduria.isInhabilitado()).append("\n");
 
+                        preAprobados.append(procuraduria.getNombre()).append(",")
+                                .append(procuraduria.getApellidos()).append(",")
+                                .append(procuraduria.getEdad()).append(",")
+                                .append(procuraduria.getDocumento()).append(",")
+                                .append(procuraduria.getTelefono()).append(",")
+                                .append(procuraduria.getCuidadResidencia()).append(",")
+                                .append(procuraduria.isDeclarador()).append(",")
+                                .append(procuraduria.isEmbargado()).append(",")
+                                .append(procuraduria.isInhabilitado()).append("\n");
+
                     } else if (procuraduria.isInhabilitado() && !procuraduria.isEmbargado()) {
                         inhabilitados.append(procuraduria.getNombre()).append(",")
                                 .append(procuraduria.getApellidos()).append(",")
@@ -196,7 +225,7 @@ public class ComparadorSolicitante {
             }
         }
 
-        // Ahora escribimos todo de una vez en el archivo
+        //ahora escribimos las clases
 
         if (!embargados.isEmpty()) {
             archivosCSV.embargadosEscribirCSV(embargados.toString());

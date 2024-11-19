@@ -13,8 +13,6 @@ import java.util.Comparator;
 
 public class Ordenamiento {
 
-
-
     public void ordenamiento() {
         ArchivosCSV archivosCSV = new ArchivosCSV();
         archivosCSV.leerCSVPreAprobados();
