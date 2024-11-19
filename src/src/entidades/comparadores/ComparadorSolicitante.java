@@ -196,7 +196,7 @@ public class ComparadorSolicitante {
             }
         }
 
-        // Ahora escribimos todo de una vez en el archivo
+        //ahora escribimos las clases
 
         if (!embargados.isEmpty()) {
             archivosCSV.embargadosEscribirCSV(embargados.toString());
