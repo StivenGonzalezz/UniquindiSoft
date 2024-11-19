@@ -1,6 +1,7 @@
 package src.entidades.comparadores;
 
 import src.csv.ArchivosCSV;
+import src.entidades.humanos.PreAprobado;
 import src.entidades.humanos.Solicitantes;
 import src.entidades.humanos.entes.Contraloria;
 import src.entidades.humanos.entes.Fiscalia;
@@ -9,9 +10,11 @@ import java.util.ArrayList;
 
 public class ComparadorSolicitante {
 
+    ArchivosCSV archivosCSV = new ArchivosCSV();
+
+
     public void revision() {
 
-        ArchivosCSV archivosCSV = new ArchivosCSV();
 
         archivosCSV.leerCSVSolicitantes();
         archivosCSV.leerCSVContraloria();
@@ -201,6 +204,25 @@ public class ComparadorSolicitante {
             archivosCSV.inhabilitadosEscribirCSV(inhabilitados.toString());
         }if (!preAprobados.isEmpty()) {
             archivosCSV.preAprobadosEscribirCSV(preAprobados.toString());
+        }
+    }
+
+    public void revisionAprobados(ArrayList<PreAprobado> lista){
+        StringBuilder aprobados = new StringBuilder();
+        for(PreAprobado preAprobado : lista){
+            aprobados.append(preAprobado.getNombre()).append(",")
+                    .append(preAprobado.getApellidos()).append(",")
+                    .append(preAprobado.getEdad()).append(",")
+                    .append(preAprobado.getDocumento()).append(",")
+                    .append(preAprobado.getTelefono()).append(",")
+                    .append(preAprobado.getCuidadResidencia()).append(",")
+                    .append(preAprobado.isDeclarador()).append(",")
+                    .append(preAprobado.isEmbargado()).append(",")
+                    .append(preAprobado.isInhabilitado()).append("\n");
+        }
+
+        if (!aprobados.isEmpty()){
+            archivosCSV.aprobadosEscribirCSV(aprobados.toString());
         }
     }
 }

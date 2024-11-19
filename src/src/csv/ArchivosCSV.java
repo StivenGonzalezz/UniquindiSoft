@@ -19,6 +19,7 @@ public class ArchivosCSV {
     private ArrayList<Fiscalia> listaFiscalia;
     private ArrayList<Procuraduria> listaProcuraduria;
     private ArrayList<PreAprobado> listaPreAprobado;
+    private ArrayList<PreAprobado> listaAprobado;
 
 
 
@@ -28,6 +29,7 @@ public class ArchivosCSV {
         listaFiscalia = new ArrayList<>();
         listaProcuraduria = new ArrayList<>();
         listaPreAprobado = new ArrayList<>();
+        listaAprobado = new ArrayList<>();
     }
 
     public void leerCSVSolicitantes() {
@@ -190,6 +192,14 @@ public class ArchivosCSV {
         }
     }
 
+    public void aprobadosEscribirCSV(String aprobados) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\UQ\\estructuraDatos\\proyecto\\UniquindiSoft\\archivosCSV\\aprobados.csv", false))) {
+            bw.write(aprobados);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<Solicitantes> getListaSolicitantes() {
         return listaSolicitantes;
     }public ArrayList<Contraloria> getListaContraloria() {
@@ -200,5 +210,7 @@ public class ArchivosCSV {
         return listaProcuraduria;
     }public ArrayList<PreAprobado> getListaPreAprobado() {
         return listaPreAprobado;
+    }public ArrayList<PreAprobado> getListaAprobado() {
+        return listaAprobado;
     }
 }
